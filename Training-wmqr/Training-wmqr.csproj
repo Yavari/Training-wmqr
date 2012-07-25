@@ -119,10 +119,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CurrentUser.cs" />
+    <Compile Include="Infrastructure\ICurrentUser.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Favourite.cs" />
     <Compile Include="Models\User.cs" />

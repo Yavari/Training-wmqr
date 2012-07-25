@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Castle.ActiveRecord;
+using NHibernate.Criterion;
 
 namespace Training_wmqr.Models
 {
@@ -33,6 +34,11 @@ namespace Training_wmqr.Models
                               Document = Document.Find(documentId)
                           };
             Favourites.Add(fav);
+        }
+
+        public static User FindByUsername(string username)
+        {
+            return FindFirst(Restrictions.Eq("Username", username));
         }
     }
 }

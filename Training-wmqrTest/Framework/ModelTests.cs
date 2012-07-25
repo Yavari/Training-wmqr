@@ -2,6 +2,8 @@
 using Castle.ActiveRecord;
 using Castle.ActiveRecord.Framework;
 using Castle.ActiveRecord.Framework.Config;
+using Moq;
+using Training_wmqr.Infrastructure;
 using log4net.Config;
 using NUnit.Framework;
 
@@ -31,6 +33,14 @@ namespace Training_wmqrTest.Framework
         public void TearDownFixture()
         {
             
+        }
+
+        public ICurrentUser MockCurrentUser()
+        {
+            var userMock = new Mock<ICurrentUser>();
+            userMock.Setup(x => x.Name()).Returns("lvaezi");
+            userMock.Setup(x => x.UserName()).Returns("lvaezi");
+            return userMock.Object;
         }
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Castle.ActiveRecord;
 using Training_wmqr.Models;
 
 namespace Training_wmqr.Controllers
 {
-    public class DocumentController : Controller
+    public class DocumentController : ApplicationController
     {
         public ActionResult Index()
         {
@@ -28,8 +29,14 @@ namespace Training_wmqr.Controllers
         [HttpPost]
         public ActionResult Create(Document document)
         {
-            document.Save();
-            return RedirectToAction("Index");
+            using(var transaction = new TransactionScope(TransactionMode.New))
+            {
+                var author = Models.User.FindByUsername(_user.UserName());
+                author.Documents.Add(document);
+                author.Save();
+                return RedirectToAction("Index");
+            }
+
         }
 
         public ActionResult Edit(int id)

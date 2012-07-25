@@ -20,7 +20,7 @@ namespace Training_wmqrTest.Controllers
         {
             var author = new User
             {
-                Username = "username",
+                Username = "lvaezi",
                 Email = "mail@gmail.com",
                 Documents = new List<Document>
                 {
@@ -28,7 +28,7 @@ namespace Training_wmqrTest.Controllers
                 }
             };
             author.Save();
-            _controller = new DocumentController();
+            _controller = new DocumentController{_user = MockCurrentUser()};
         }
 
         [Test]
@@ -65,6 +65,7 @@ namespace Training_wmqrTest.Controllers
             var result = _controller.Create(document) as RedirectToRouteResult;
             Assert.AreEqual("Index", result.RouteValues["Action"]);
             Assert.AreEqual(2, Document.FindAll().Count());
+            Assert.AreEqual("lvaezi", Document.Find(2).Author.Username);
         }
 
         [Test]
