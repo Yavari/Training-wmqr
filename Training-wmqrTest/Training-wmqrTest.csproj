@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\UserTests.cs" />
     <Compile Include="TestSetup.cs" />
     <Compile Include="Framework\ModelTests.cs" />
     <Compile Include="Framework\SQLiteInMemoryTestingConnectionProvider.cs" />
