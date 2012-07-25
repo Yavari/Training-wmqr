@@ -14,5 +14,11 @@ namespace Training_wmqr.Models
 
         [Property]
         public string Text { get; set; }
+
+        [BelongsTo]
+        public User Author { get; set; }
+
+        [HasMany(Cascade = ManyRelationCascadeEnum.All)]
+        public IList<Favourite> Favourites { get; set; } 
     }
 }

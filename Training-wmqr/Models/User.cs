@@ -17,5 +17,22 @@ namespace Training_wmqr.Models
 
         [Property]
         public string Email { get; set; }
+
+        [HasMany(Cascade = ManyRelationCascadeEnum.All)]
+        public IList<Document> Documents { get; set; }
+
+        [HasMany(Cascade = ManyRelationCascadeEnum.All)]
+        public IList<Favourite> Favourites { get; set; }
+
+        public void TagFavourite(int documentId)
+        {
+            var fav = new Favourite
+                          {
+                              CreatedAt = DateTime.Now,
+                              User = this,
+                              Document = Document.Find(documentId)
+                          };
+            Favourites.Add(fav);
+        }
     }
 }

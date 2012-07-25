@@ -11,4 +11,6 @@ Instructions
 * Setup in memory database in the test project and change the test server to build for x86
 * Add the user model
 * Add the document model
+* Add relationship between users and documents
+* I should be able to tag favourite documents
 	
