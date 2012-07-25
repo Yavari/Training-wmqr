@@ -13,4 +13,5 @@ Instructions
 * Add the document model
 * Add relationship between users and documents
 * I should be able to tag favourite documents
+* Sessions
 	

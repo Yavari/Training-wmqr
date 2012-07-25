@@ -18,10 +18,10 @@ namespace Training_wmqr.Models
         [Property]
         public string Email { get; set; }
 
-        [HasMany(Cascade = ManyRelationCascadeEnum.All)]
+        [HasMany(Cascade = ManyRelationCascadeEnum.All, Lazy = true)]
         public IList<Document> Documents { get; set; }
 
-        [HasMany(Cascade = ManyRelationCascadeEnum.All)]
+        [HasMany(Cascade = ManyRelationCascadeEnum.All, Lazy = true)]
         public IList<Favourite> Favourites { get; set; }
 
         public void TagFavourite(int documentId)

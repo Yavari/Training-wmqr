@@ -18,7 +18,7 @@ namespace Training_wmqr.Models
         [BelongsTo]
         public User Author { get; set; }
 
-        [HasMany(Cascade = ManyRelationCascadeEnum.All)]
+        [HasMany(Cascade = ManyRelationCascadeEnum.All, Lazy = true)]
         public IList<Favourite> Favourites { get; set; } 
     }
 }

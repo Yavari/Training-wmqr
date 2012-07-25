@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Castle.ActiveRecord;
 using NUnit.Framework;
 using Training_wmqr.Models;
 using Training_wmqrTest.Framework;
@@ -48,7 +49,7 @@ namespace Training_wmqrTest.Models
         }
 
         [Test]
-        public void UserShouldBeAbleToTagDocumentsAsFavourites()
+        public void IShouldBeAbleToTagFavrouriteDocuments()
         {
             var user = new User
             {
@@ -60,7 +61,23 @@ namespace Training_wmqrTest.Models
             user.TagFavourite(documentId);
 
             Assert.AreEqual(documentId, user.Favourites.First().Document.Id);
+        }
 
+        [Test]
+        public void CanFindDocumentsByUser()
+        {
+            var user = new User
+            {
+                Documents = new List<Document> {new Document {Text = "This is an interesting docuemnt."}},
+                Favourites = new List<Favourite>()
+            };
+            user.Save();
+
+            using (new SessionScope(FlushAction.Never))
+            {
+                user = User.Find(user.Id);
+                Assert.AreEqual(1, user.Documents.Count);
+            }
         }
     }
 }
