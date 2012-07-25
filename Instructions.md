@@ -10,4 +10,5 @@ Instructions
 * Add references to the ActiveRecord dlls and add the Framework classes
 * Setup in memory database in the test project and change the test server to build for x86
 * Add the user model
+* Add the document model
 	
