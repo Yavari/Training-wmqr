@@ -17,7 +17,7 @@
     
         <fieldset>
             <legend>Document</legend>
-            <div>@ViewBag.ErrorMessage</div>
+            @Html.ShowErrorMessage()
             <div class="editor-label">
                 @Html.LabelFor(model => model.Text)
             </div>

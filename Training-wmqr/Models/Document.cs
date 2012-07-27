@@ -20,5 +20,6 @@ namespace Training_wmqr.Models
 
         [HasMany(Cascade = ManyRelationCascadeEnum.All, Lazy = true)]
         public IList<Favourite> Favourites { get; set; } 
+
     }
 }

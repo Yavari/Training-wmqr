@@ -95,5 +95,71 @@ namespace Training_wmqrTest.Models
             var exception = Assert.Throws<NotFoundException>(()=> User.FindByUsername("pyavari"));
             Assert.AreEqual("'pyavari' not found", exception.Message);
         }
+
+        [Test]
+        public void CanAddFavourite()
+        {
+            var user = new User
+            {
+                Documents = new List<Document> {new Document {Text = "Favourite"}},
+                Favourites = new List<Favourite>()
+            };
+            user.Save();
+            using (new SessionScope())
+            {
+                User.Find(user.Id).AddFavourite(1);
+            }
+
+            using (new SessionScope(FlushAction.Never))
+            {
+                Assert.AreEqual(1, User.Find(user.Id).Favourites.Count);
+                Assert.AreEqual(1, Favourite.FindAll().Count());
+            }
+        }
+
+        [Test]
+        public void WontAddSameDocumentToFavourite()
+        {
+            var user = new User
+            {
+                Documents = new List<Document> { new Document { Text = "Favourite" } },
+                Favourites = new List<Favourite>()
+            };
+            user.Favourites.Add(new Favourite{Document = user.Documents.First()});
+            user.Save();
+
+            using (new SessionScope())
+            {
+                User.Find(user.Id).AddFavourite(1);
+            }
+            
+            using (new SessionScope(FlushAction.Never))
+            {
+                Assert.AreEqual(1, User.Find(user.Id).Favourites.Count);
+            }
+        }
+
+        [Test]
+        public void CanRemoveFavourite()
+        {
+            var user = new User
+            {
+                Documents = new List<Document> { new Document { Text = "Favourite" } },
+                Favourites = new List<Favourite>()
+            };
+            user.Favourites.Add(new Favourite { Document = user.Documents.First() });
+            user.Save();
+
+            using (new SessionScope())
+            {
+                User.Find(user.Id).RemoveFavourite(1);
+            }
+
+            using (new SessionScope(FlushAction.Never))
+            {
+                Assert.AreEqual(0, User.Find(user.Id).Favourites.Count);
+                Assert.AreEqual(0, Favourite.FindAll().Count());
+            }
+        }
     }
 }

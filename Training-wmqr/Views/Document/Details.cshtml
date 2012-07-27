@@ -1,4 +1,5 @@
-﻿@model Training_wmqr.Models.Document
+﻿@using Training_wmqr.Infrastructure
+@model Training_wmqr.Models.Document
 
 @{
     Layout = null;
@@ -16,12 +17,41 @@
         <legend>Document</legend>
     
         <div class="display-label">
-             @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayNameFor(model => model.Text)
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Text)
         </div>
+        
+        <div class="display-label">
+            Author
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Author.Username)
+        </div>
+        
+        <div class="display-label">
+            Favourites
+        </div>
+        <div class="display-field">
+            @Html.DisplayList(Model.Favourites.Select(f => f.User.Username))
+        </div>
     </fieldset>
+    @if (Model.IsFavourite(HttpUser.GetUsername()))
+    {
+        using (Html.BeginForm("RemoveFavourite", "Document"))
+        {
+            @Html.Hidden("id", Model.Id)
+            <input type="submit" value="un-Favourite"/>
+        }
+    }
+    else{
+        using (Html.BeginForm("AddFavourite", "Document"))
+         {
+             @Html.Hidden("id", Model.Id)
+             <input type="submit" value="Favourite"/>
+         }
+    }
     <p>
         @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
         @Html.ActionLink("Back to List", "Index")

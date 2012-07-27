@@ -127,6 +127,9 @@
     </Compile>
     <Compile Include="Infrastructure\CurrentUser.cs" />
     <Compile Include="Infrastructure\ICurrentUser.cs" />
+    <Compile Include="Infrastructure\LinqExtensions.cs" />
+    <Compile Include="Infrastructure\HttpUser.cs" />
+    <Compile Include="Infrastructure\ViewHelpers.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Favourite.cs" />
     <Compile Include="Models\User.cs" />

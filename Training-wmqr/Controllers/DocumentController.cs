@@ -17,8 +17,12 @@ namespace Training_wmqr.Controllers
 
         public ActionResult Details(int id)
         {
-            var document = Document.Find(id);
-            return View("Details", document);
+            using (new SessionScope())
+            {
+                var document = Document.Find(id);
+                document.Favourites.ToList();
+                return View("Details", document);
+            }
         }
 
         public ActionResult Create()
@@ -70,6 +74,30 @@ namespace Training_wmqr.Controllers
             var document = Document.Find(id);
             document.Delete();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult AddFavourite(int id)
+        {
+            using (new SessionScope())
+            {
+                var user = Models.User.FindByUsername(_user.UserName());
+                user.AddFavourite(id);
+                return RedirectToAction("Details", new{id});
+            }
+        }
+
+        [HttpPost]
+        public ActionResult RemoveFavourite(int id)
+        {
+            using (new SessionScope())
+            {
+                var user = Models.User.FindByUsername(_user.UserName());
+                user.RemoveFavourite(id);
+                return RedirectToAction("Details", new { id });
+            }
+
+            
         }
     }
 }

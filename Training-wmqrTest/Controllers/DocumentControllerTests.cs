@@ -107,5 +107,19 @@ namespace Training_wmqrTest.Controllers
             Assert.AreEqual("Index", result.RouteValues["Action"]);
             Assert.AreEqual(0, Document.FindAll().Count());
         }
+
+        [Test]
+        public void CanAddFavourite()
+        {
+            dynamic result = _controller.AddFavourite(1);
+            Assert.AreEqual("Details", result.RouteValues["Action"]);
+        }
+
+        [Test]
+        public void CanRemoveFavourite()
+        {
+            dynamic result = _controller.RemoveFavourite(1);
+            Assert.AreEqual("Details", result.RouteValues["Action"]);
+        }
     }
 }

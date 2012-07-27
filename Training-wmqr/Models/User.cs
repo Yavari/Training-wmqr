@@ -45,5 +45,25 @@ namespace Training_wmqr.Models
             }
             return user;
         }
+
+        public void AddFavourite(int id)
+        {
+            if(Favourites.Any(f => f.Document.Id == id))
+                return;
+            Favourites.Add(new Favourite
+            {
+                Document = Document.Find(id),
+                CreatedAt = DateTime.Now
+            });
+            Save();
+        }
+
+        public void RemoveFavourite(int id)
+        {
+            var favourite = Favourites.First(f => f.Document.Id == id);
+            Favourites.Remove(favourite);
+            favourite.Delete();
+            
+        }
     }
 }
