@@ -31,11 +31,8 @@ namespace Training_wmqr
             if (ActiveRecordStarter.IsInitialized) return;
             var source = ActiveRecordSectionHandler.Instance;
             ActiveRecordStarter.Initialize(Assembly.Load("Training-wmqr"), source);
-            ActiveRecordStarter.CreateSchema();
+            //ActiveRecordStarter.CreateSchema();
             log4net.Config.XmlConfigurator.Configure();
-
-            var user = new User {Username = "pyavari"};
-            user.Save();
         }
     }
 }

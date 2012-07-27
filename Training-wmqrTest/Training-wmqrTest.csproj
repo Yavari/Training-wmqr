@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\UserControllerTests.cs" />
     <Compile Include="Controllers\DocumentControllerTests.cs" />
     <Compile Include="Models\DocumentTests.cs" />
     <Compile Include="Models\UserTests.cs" />
