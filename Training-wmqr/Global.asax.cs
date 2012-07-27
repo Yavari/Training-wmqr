@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Castle.ActiveRecord;
+using Castle.ActiveRecord.Framework;
+using Castle.ActiveRecord.Framework.Config;
+using Training_wmqr.Models;
 
 namespace Training_wmqr
 {
@@ -18,6 +23,19 @@ namespace Training_wmqr
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            InitializeActiveRecord();
+        }
+
+        private void InitializeActiveRecord()
+        {
+            if (ActiveRecordStarter.IsInitialized) return;
+            var source = ActiveRecordSectionHandler.Instance;
+            ActiveRecordStarter.Initialize(Assembly.Load("Training-wmqr"), source);
+            ActiveRecordStarter.CreateSchema();
+            log4net.Config.XmlConfigurator.Configure();
+
+            var user = new User {Username = "pyavari"};
+            user.Save();
         }
     }
 }

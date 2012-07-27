@@ -31,12 +31,22 @@ namespace Training_wmqr.Controllers
         {
             using(var transaction = new TransactionScope(TransactionMode.New))
             {
-                var author = Models.User.FindByUsername(_user.UserName());
-                author.Documents.Add(document);
-                author.Save();
-                return RedirectToAction("Index");
+                try
+                {
+                    var user = _user.UserName();
+                    var author = Models.User.FindByUsername(user);
+                    author.Documents.Add(document);
+                    author.Save();
+                    return RedirectToAction("Index");
+                }
+                catch (NotFoundException ex)
+                {
+                    transaction.VoteRollBack();
+                    ViewBag.ErrorMessage = String.Format("{0}. Please add the user first.", ex.Message);
+                    
+                }
             }
-
+            return View("Create");
         }
 
         public ActionResult Edit(int id)

@@ -69,6 +69,20 @@ namespace Training_wmqrTest.Controllers
         }
 
         [Test]
+        public void PostCreateShowsErrorIfUserNotCreated()
+        {
+            _controller._user = MockCurrentUser("anotherUser");
+            var document = new Document
+            {
+                Text = "New document"
+            };
+            dynamic result = _controller.Create(document);
+            Assert.IsInstanceOf<ViewResult>(result);
+            Assert.AreEqual("Create", result.ViewName);
+            Assert.IsNotNull(result.ViewBag.ErrorMessage);
+        }
+
+        [Test]
         public void CanEdit()
         {
             dynamic result = _controller.Edit(1);

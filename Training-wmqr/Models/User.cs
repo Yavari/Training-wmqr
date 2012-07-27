@@ -38,7 +38,12 @@ namespace Training_wmqr.Models
 
         public static User FindByUsername(string username)
         {
-            return FindFirst(Restrictions.Eq("Username", username));
+            var user = FindFirst(Restrictions.Eq("Username", username));
+            if(user == null)
+            {
+                throw new NotFoundException(String.Format("'{0}' not found", username));
+            }
+            return user;
         }
     }
 }

@@ -79,5 +79,21 @@ namespace Training_wmqrTest.Models
                 Assert.AreEqual(1, user.Documents.Count);
             }
         }
+
+        [Test]
+        public void CanFindUserByUsername()
+        {
+            var user = new User {Username = "pyavari"};
+            user.Save();
+
+            Assert.IsNotNull(User.FindByUsername("pyavari"));
+        }
+
+        [Test]
+        public void FindByUsernameThrowsExceptionIfNotFound()
+        {
+            var exception = Assert.Throws<NotFoundException>(()=> User.FindByUsername("pyavari"));
+            Assert.AreEqual("'pyavari' not found", exception.Message);
+        }
     }
 }

@@ -1,0 +1,30 @@
+﻿@model Training_wmqr.Models.Document
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Document</legend>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Text)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Text)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -35,11 +35,11 @@ namespace Training_wmqrTest.Framework
             
         }
 
-        public ICurrentUser MockCurrentUser()
+        public ICurrentUser MockCurrentUser(string username = "lvaezi")
         {
             var userMock = new Mock<ICurrentUser>();
-            userMock.Setup(x => x.Name()).Returns("lvaezi");
-            userMock.Setup(x => x.UserName()).Returns("lvaezi");
+            userMock.Setup(x => x.Name()).Returns(username);
+            userMock.Setup(x => x.UserName()).Returns(username);
             return userMock.Object;
         }
     }
