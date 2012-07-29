@@ -2,41 +2,25 @@
 @model Training_wmqr.Models.Document
 
 @{
-    Layout = null;
+    ViewBag.Title = "Details";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
     <fieldset>
-        <legend>Document</legend>
-    
-        <div class="display-label">
-            @Html.DisplayNameFor(model => model.Text)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Text)
-        </div>
-        
-        <div class="display-label">
-            Author
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Author.Username)
-        </div>
-        
-        <div class="display-label">
-            Favourites
-        </div>
-        <div class="display-field">
-            @Html.DisplayList(Model.Favourites.Select(f => f.User.Username))
-        </div>
+	    <legend>Document Details</legend>
+	    <label>
+		    <span>@Html.DisplayNameFor(model => model.Text):</span>
+		    <span>@Html.DisplayFor(model => model.Text)</span>
+	    </label>
+	    <label>
+		    <span>Author:</span>
+		    <span>@Html.DisplayFor(model => model.Author.Username)</span>
+	    </label>
+	    <label>
+		    <span>Favourites:</span>
+		    <span>@Html.DisplayList(Model.Favourites.Select(f => f.User.Username))</span>
+	    </label>
     </fieldset>
+
     @if (Model.IsFavourite(HttpUser.GetUsername()))
     {
         using (Html.BeginForm("RemoveFavourite", "Document"))
@@ -56,5 +40,3 @@
         @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
-</body>
-</html>

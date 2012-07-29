@@ -1,47 +1,27 @@
 ﻿@model Training_wmqr.Models.User
 
 @{
-    Layout = null;
+    ViewBag.Title = "Create";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
     @using (Html.BeginForm()) {
         @Html.ValidationSummary(true)
-    
         <fieldset>
-            <legend>User</legend>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Username)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Username)
-                @Html.ValidationMessageFor(model => model.Username)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Email)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Email)
-                @Html.ValidationMessageFor(model => model.Email)
-            </div>
-    
-            <p>
-                <input type="submit" value="Create" />
-            </p>
-        </fieldset>
+			<legend>Add User</legend>
+			<label>
+				<span>@Html.LabelFor(model => model.Username):</span>
+				@Html.EditorFor(model => model.Username)
+				<span>@Html.ValidationMessageFor(model => model.Username)</span>
+			</label>
+			<label>
+				<span>@Html.LabelFor(model => model.Email):</span>
+				@Html.EditorFor(model => model.Email)
+				<span>@Html.ValidationMessageFor(model => model.Email)</span>
+			</label>
+		</fieldset>
+		<button type="submit">Create User</button>
     }
     
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>

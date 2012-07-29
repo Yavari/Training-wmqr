@@ -1,41 +1,24 @@
 ﻿@model Training_wmqr.Models.Document
 
 @{
-    Layout = null;
+    ViewBag.Title = "Edit";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.ValidationSummary(true)
-    
         <fieldset>
-            <legend>Document</legend>
-    
+			<legend>Edit Document</legend>
             @Html.HiddenFor(model => model.Id)
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Text)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Text)
-                @Html.ValidationMessageFor(model => model.Text)
-            </div>
-    
-            <p>
-                <input type="submit" value="Save" />
-            </p>
-        </fieldset>
+			<label>
+				<span>@Html.LabelFor(model => model.Text):</span>
+				@Html.EditorFor(model => model.Text)
+				<span>@Html.ValidationMessageFor(model => model.Text)</span>
+			</label>
+		</fieldset>
+        <button type="submit">Update Document</button>
     }
     
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>

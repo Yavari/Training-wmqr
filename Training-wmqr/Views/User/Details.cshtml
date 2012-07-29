@@ -1,37 +1,20 @@
 ﻿@model Training_wmqr.Models.User
 
 @{
-    Layout = null;
+    ViewBag.Title = "Details";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
     <fieldset>
-        <legend>User</legend>
-    
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Username)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Username)
-        </div>
-    
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Email)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Email)
-        </div>
+	    <legend>User Details</legend>
+	    <label>
+		    <span>@Html.DisplayNameFor(model => model.Username):</span>
+		    <span>@Html.DisplayFor(model => model.Username)</span>
+	    </label>
+	    <label>
+		    <span>@Html.DisplayNameFor(model => model.Email):</span>
+		    <span>@Html.DisplayFor(model => model.Email)</span>
+	    </label>
     </fieldset>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) | @Html.ActionLink("Back to List", "Index")
     </p>
-</body>
-</html>
