@@ -44,6 +44,7 @@ namespace Training_wmqr.Controllers
         {
             var original = Models.User.Find(id);
             original.Email = user.Email;
+            original.Username = user.Username;
             original.Save();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,30 @@
+﻿<script>
+    jQuery(document).ready(function ($) {
+        window.documents = @Html.Raw(ViewBag.Documents);
+        
+        $.each(documents, function(index, document) {
+            $('#documents tbody').append(renderDocument(document));
+        });
+
+        $('#documents .edit').live("click", function() {
+            editDocument($(this));
+        });
+        
+        $('#documents .save').live("click", function() {
+            saveEditDocuemnt($(this));
+        });
+        
+        $('#documents .cancel').live("click", function() {
+            cancelEdit($(this));
+        });
+        
+        $('#documents .delete').live("click", function() {
+            deleteDocuemnt($(this));
+        });
+    });
+</script>
+
+<table id="documents">
+    <tbody>
+    </tbody>
+</table>
