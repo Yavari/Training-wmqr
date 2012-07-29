@@ -118,7 +118,8 @@ namespace Training_wmqrTest.Controllers
         [Test]
         public void CanRemoveFavourite()
         {
-            dynamic result = _controller.RemoveFavourite(1);
+            dynamic result = _controller.AddFavourite(1);
+            result = _controller.RemoveFavourite(1);
             Assert.AreEqual("Details", result.RouteValues["Action"]);
         }
     }
