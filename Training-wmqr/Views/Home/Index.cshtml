@@ -6,19 +6,19 @@
             $('#documents tbody').append(renderDocument(document));
         });
         // move to on http://api.jquery.com/live/
-        $("#documents").on("click",".edit",function(){
+        $("#documents").on("click",".edit",function() {
             editDocument($(this));
         });
         
-        $('#documents .save').live("click", function() {
+        $("#documents").on("click",".save",function() {
             saveEditDocuemnt($(this));
         });
         
-        $('#documents .cancel').live("click", function() {
+        $("#documents").on("click",".cancel",function() {
             cancelEdit($(this));
         });
         
-        $('#documents .delete').live("click", function() {
+        $("#documents").on("click",".delete",function() {
             deleteDocuemnt($(this));
         });
     });
