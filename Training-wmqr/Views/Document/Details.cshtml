@@ -5,21 +5,24 @@
     ViewBag.Title = "Details";
 }
 
-    <fieldset>
-	    <legend>Document Details</legend>
-	    <label>
-		    <span>@Html.DisplayNameFor(model => model.Text):</span>
-		    <span>@Html.DisplayFor(model => model.Text)</span>
-	    </label>
-	    <label>
-		    <span>Author:</span>
-		    <span>@Html.DisplayFor(model => model.Author.Username)</span>
-	    </label>
-	    <label>
-		    <span>Favourites:</span>
-		    <span>@Html.DisplayList(Model.Favourites.Select(f => f.User.Username))</span>
-	    </label>
-    </fieldset>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                <th>@Html.DisplayNameFor(model => model.Text)</th>
+                <th>Author</th>
+                <th>Favourites</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Title)</td>
+                <td>@Html.DisplayFor(model => model.Text)</td>
+                <td>@Html.DisplayFor(model => model.Author.Username)</td>
+                <td>@Html.DisplayList(Model.Favourites.Select(f => f.User.Username))</td>
+            </tr>
+        </tbody>
+    </table>
 
     @if (Model.IsFavourite(HttpUser.GetUsername()))
     {

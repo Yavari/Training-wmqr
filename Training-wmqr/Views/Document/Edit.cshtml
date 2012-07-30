@@ -10,11 +10,16 @@
         <fieldset>
 			<legend>Edit Document</legend>
             @Html.HiddenFor(model => model.Id)
-			<label>
-				<span>@Html.LabelFor(model => model.Text):</span>
-				@Html.EditorFor(model => model.Text)
-				<span>@Html.ValidationMessageFor(model => model.Text)</span>
-			</label>
+            <label>
+                <span>@Html.LabelFor(model => model.Title):</span>
+                @Html.EditorFor(model => model.Title)
+                <span>@Html.ValidationMessageFor(model => model.Title)</span>
+            </label>
+            <label>
+                <span>@Html.LabelFor(model => model.Text):</span>
+                @Html.EditorFor(model => model.Text)
+                <span>@Html.ValidationMessageFor(model => model.Text)</span>
+            </label>
 		</fieldset>
         <button type="submit">Update Document</button>
     }

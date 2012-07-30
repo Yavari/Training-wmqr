@@ -12,6 +12,11 @@
 			<legend>Edit User</legend>
             @Html.HiddenFor(model => model.Id)
 			<label>
+				<span>@Html.LabelFor(model => model.Name):</span>
+				@Html.EditorFor(model => model.Name)
+				<span>@Html.ValidationMessageFor(model => model.Name)</span>
+			</label>
+			<label>
 				<span>@Html.LabelFor(model => model.Username):</span>
 				@Html.EditorFor(model => model.Username)
 				<span>@Html.ValidationMessageFor(model => model.Username)</span>
