@@ -25,14 +25,20 @@ namespace Training_wmqrTest.Framework
         [SetUp]
         public void SetUp()
         {
-            ActiveRecordStarter.DropSchema();
             ActiveRecordStarter.CreateSchema();
+            ScopeManagement.CreateScope();
         }
 
         [TearDown]
         public void TearDownFixture()
         {
-            
+            ScopeManagement.DisposeScope();
+            ActiveRecordStarter.DropSchema();
+        }
+
+        protected virtual void ResetScope()
+        {
+            ScopeManagement.ResetScope();
         }
 
         public ICurrentUser MockCurrentUser(string username = "lvaezi")

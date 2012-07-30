@@ -21,7 +21,7 @@ namespace Training_wmqrTest.Models
                 Username = "pyavari"
             };
             user.Save();
-
+            
             user = User.Find(user.Id);
             Assert.AreEqual("payam@yavari.se", user.Email);
             Assert.AreEqual("pyavari", user.Username);
@@ -43,6 +43,7 @@ namespace Training_wmqrTest.Models
                 }
             };
             user.Save();
+            ResetScope();
 
             var document = Document.Find(user.Documents.First().Id);
             Assert.AreEqual("pyavari", document.Author.Username);
@@ -72,12 +73,10 @@ namespace Training_wmqrTest.Models
                 Favourites = new List<Favourite>()
             };
             user.Save();
+            ResetScope();
 
-            using (new SessionScope(FlushAction.Never))
-            {
-                user = User.Find(user.Id);
-                Assert.AreEqual(1, user.Documents.Count);
-            }
+            user = User.Find(user.Id);
+            Assert.AreEqual(1, user.Documents.Count);
         }
 
         [Test]
@@ -149,17 +148,13 @@ namespace Training_wmqrTest.Models
             };
             user.Favourites.Add(new Favourite { Document = user.Documents.First() });
             user.Save();
+            ResetScope();
 
-            using (new SessionScope())
-            {
-                User.Find(user.Id).RemoveFavourite(1);
-            }
+            User.Find(user.Id).RemoveFavourite(1);
+            ResetScope();
 
-            using (new SessionScope(FlushAction.Never))
-            {
-                Assert.AreEqual(0, User.Find(user.Id).Favourites.Count);
-                Assert.AreEqual(0, Favourite.FindAll().Count());
-            }
+            Assert.AreEqual(0, User.Find(user.Id).Favourites.Count);
+            Assert.AreEqual(0, Favourite.FindAll().Count());
         }
     }
 }

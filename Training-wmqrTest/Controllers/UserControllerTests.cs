@@ -86,6 +86,7 @@ namespace Training_wmqrTest.Controllers
         public void CanDelete()
         {
             dynamic result = _controller.Delete(1);
+            ResetScope();
             Assert.AreEqual("Index", result.RouteValues["Action"]);
             Assert.AreEqual(0, User.FindAll().Count());
         }

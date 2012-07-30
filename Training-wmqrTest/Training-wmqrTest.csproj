@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Controllers\UserControllerTests.cs" />
     <Compile Include="Controllers\DocumentControllerTests.cs" />
+    <Compile Include="Framework\ScopeManagement.cs" />
     <Compile Include="Models\DocumentTests.cs" />
     <Compile Include="Models\UserTests.cs" />
     <Compile Include="TestSetup.cs" />

@@ -28,6 +28,7 @@ namespace Training_wmqrTest.Controllers
                 }
             };
             author.Save();
+            ResetScope();
             _controller = new DocumentController{_user = MockCurrentUser()};
         }
 
@@ -104,6 +105,7 @@ namespace Training_wmqrTest.Controllers
         public void CanDelete()
         {
             dynamic result = _controller.Delete(1);
+            ResetScope();
             Assert.AreEqual("Index", result.RouteValues["Action"]);
             Assert.AreEqual(0, Document.FindAll().Count());
         }
