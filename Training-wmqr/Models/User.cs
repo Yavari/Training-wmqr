@@ -14,6 +14,9 @@ namespace Training_wmqr.Models
         public int Id { get; set; }
 
         [Property]
+        public string Name { get; set; }
+
+        [Property]
         public string Username { get; set; }
 
         [Property]

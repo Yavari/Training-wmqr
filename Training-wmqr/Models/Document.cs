@@ -13,6 +13,9 @@ namespace Training_wmqr.Models
         public int Id { get; set; }
 
         [Property]
+        public string Title { get; set; }
+
+        [Property]
         public string Text { get; set; }
 
         [BelongsTo]
