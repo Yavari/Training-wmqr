@@ -5,8 +5,8 @@
         $.each(documents, function(index, document) {
             $('#documents tbody').append(renderDocument(document));
         });
-
-        $('#documents .edit').live("click", function() {
+        // move to on http://api.jquery.com/live/
+        $("#documents").on("click",".edit",function(){
             editDocument($(this));
         });
         
