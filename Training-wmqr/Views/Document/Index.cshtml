@@ -28,7 +28,7 @@
                         @using (Html.BeginForm("Delete", "Document"))
                         {
                             @Html.Hidden("id", item.Id)
-                            <input type="submit" value="Delete"/>
+                            <button type="submit" class="btn btn-mini btn-danger">Delete</button>
                         }
                     </td>
                 </tr>

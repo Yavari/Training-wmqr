@@ -4,26 +4,29 @@
     ViewBag.Title = "Create";
 }
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
     {
         @Html.ValidationSummary(true)
         <fieldset>
 			<legend>Add Document</legend>
             @Html.ShowErrorMessage()
-            <label>
-                <span>@Html.LabelFor(model => model.Title):</span>
-                @Html.EditorFor(model => model.Title)
-                <span>@Html.ValidationMessageFor(model => model.Title)</span>
-            </label>
-            <label>
-                <span>@Html.LabelFor(model => model.Text):</span>
-                @Html.EditorFor(model => model.Text)
-                <span>@Html.ValidationMessageFor(model => model.Text)</span>
-            </label>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Title)
+                    <span class="help-block">@Html.ValidationMessageFor(model => model.Title)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Text, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Text)
+                    <span class="help-block">@Html.ValidationMessageFor(model => model.Text)</span>
+                </div>
+            </div>
 		</fieldset>
-		<button type="submit">Create Document</button>
+        <div class="form-actions">
+    		<button type="submit" class="btn btn-primary">Create Document</button>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
     }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
