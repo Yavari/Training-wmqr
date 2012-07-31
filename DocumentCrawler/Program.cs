@@ -7,6 +7,8 @@ using System.Text;
 using Microsoft.Practices.ServiceLocation;
 using SolrNet;
 using SolrNet.Attributes;
+using Training_wmqr.Models;
+
 namespace DocumentCrawler
 {
     class Program
@@ -42,16 +44,12 @@ namespace DocumentCrawler
                                     Fields = new List<ExtractField>()
                                                  {
                                                      new ExtractField("title", Path.GetFileName(file)),
-                                                     new ExtractField("author", "Jon")
+                                                     new ExtractField("author", "Baha'i World Volume")
                                                  }
                             });
                 }
             }
             solr.Commit();
         }
-    }
-
-    public class SolrDocument
-    {
     }
 }

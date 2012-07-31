@@ -42,8 +42,17 @@
       <HintPath>..\lib\ActiveRecord 2.1.1\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\lib\ActiveRecord 2.1.1\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="SolrNet">
+      <HintPath>..\packages\SolrNet.0.4.0-beta2\lib\SolrNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -122,6 +131,7 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -135,6 +145,7 @@
     <Compile Include="Infrastructure\ViewHelpers.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Favourite.cs" />
+    <Compile Include="Models\SolrDocument.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

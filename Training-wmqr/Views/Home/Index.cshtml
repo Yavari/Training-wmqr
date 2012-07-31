@@ -28,3 +28,61 @@
     <tbody>
     </tbody>
 </table>
+
+
+<hr />
+<div class="row span12">
+    <form id="search_form" class="form-horizontal" data-url="/api/search">
+        <input type="text" id="search_terms" value="" placeholder="keywords" />
+        <button id="search_submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <table id="search_results" class="table table-condensed table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Volume</th>
+                <th>Text</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    
+</div>
+<style>
+    em 
+    {
+        font-weight: bold;
+        color: #C43400;
+    }
+</style>
+<script>
+    $(function(){
+        $("#search_submit").click(function(e){
+            e.preventDefault();
+            var uri = $("#search_form").data("url")
+
+            $.getJSON(uri + "?q="+$("#search_terms").val(),function(resp){
+                $("#search_results tbody").empty();
+                $.each(resp,function(k,v) {
+                    $("#search_results tbody").append(result_template(v));
+                });
+                
+            });
+         });
+    });
+    var result_template = function(v){ 
+        o ="<tr>";
+          o += "<td>"+v.Id+"</td>";
+          o += "<td>"+v.Title+"</td>";
+          o += "<td><ol>";
+          $.each(v.Results,function(k,r){
+            o += "<li>"+r+"</li>";
+          });
+          o += "</ol></td>";
+        o +="</tr>";
+
+        return o;
+    }
+</script>

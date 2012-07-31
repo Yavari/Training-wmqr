@@ -62,6 +62,12 @@
     <None Include="packages.config" />
     <None Include="SolrNet.chm" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Training-wmqr\Training-wmqr.csproj">
+      <Project>{303C8559-F50C-4F6A-BFB1-31E2503956F6}</Project>
+      <Name>Training-wmqr</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

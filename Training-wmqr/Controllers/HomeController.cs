@@ -19,5 +19,6 @@ namespace Training_wmqr.Controllers
                 return View("Index");
             }
         }
+
     }
 }

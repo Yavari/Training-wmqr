@@ -1,9 +1,13 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.ActiveRecord;
 using Castle.ActiveRecord.Framework.Config;
+using SolrNet;
+using Training_wmqr.Models;
 
 namespace Training_wmqr
 {
@@ -13,8 +17,10 @@ namespace Training_wmqr
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+            var solrUrl = @"http://localhost:8983/solr";
+            Startup.Init<Dictionary<string, object>>(solrUrl);
 
+            AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             InitializeActiveRecord();
@@ -25,7 +31,7 @@ namespace Training_wmqr
             if (ActiveRecordStarter.IsInitialized) return;
             var source = ActiveRecordSectionHandler.Instance;
             ActiveRecordStarter.Initialize(Assembly.Load("Training-wmqr"), source);
-            //ActiveRecordStarter.CreateSchema();
+            ActiveRecordStarter.CreateSchema();
             log4net.Config.XmlConfigurator.Configure();
         }
 
@@ -38,4 +44,5 @@ namespace Training_wmqr
             }
         }
     }
+
 }
